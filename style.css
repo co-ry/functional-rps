@@ -1,0 +1,63 @@
+
+html {
+    background-color: burlywood;
+    margin: 0;
+    padding: 0;
+}
+
+#game-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 200px;
+    padding: 15px;
+}
+
+.image-choice{
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100%;
+    max-width: 150px;
+    max-height: 150px;
+
+}
+
+#rock {
+    height: 150px;
+}
+
+.big-btn {
+    width: 900px;
+    height: 40px;
+    background-color: aquamarine;
+}
+
+.the-rules{
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+
+}
+
+h1 {
+    height: 5rem;
+    font-family: MD Primer Bold,Rubik,Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    min-width: 475px;
+    text-transform: uppercase;
+    font-style: normal;
+    letter-spacing: .02rem;
+    flex: 1;
+    color: #000;
+    white-space: nowrap;
+    text-shadow: 0 -6rem 0 rgb(76 255 76 / 10%), 0 -5rem 0 rgb(76 255 76 / 20%), 0 -4rem 0 rgb(76 255 76 / 40%), 0 -3rem 0 rgb(76 255 76 / 60%), 0 -2rem 0 rgb(76 255 76 / 80%), 0 -1rem 0 #4cff4c, 0 1rem 0 #4cff4c, 0 2rem 0 rgb(76 255 76 / 80%), 0 3rem 0 rgb(76 255 76 / 60%), 0 4rem 0 rgb(76 255 76 / 40%), 0 5rem 0 rgb(76 255 76 / 20%), 0 6rem 0 rgb(76 255 76 / 10%);
+    overflow: hidden;
+}
