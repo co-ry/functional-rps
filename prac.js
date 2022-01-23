@@ -1,42 +1,49 @@
-// const playRound = (playerChoice, computerChoice)=> {
+const fiveChoices = ['rock', 'spock', 'paper', 'lizard', 'scissors'];
+const threeChoices = ['rock', 'paper', 'scissors'];
+let playerChoice;
+let computerChoice;
+let choicesFromArray =[];
+let currentRound = 3;
+let result;
 
-// }
-
-const fiveChoices = ['rock', 'spock', 'paper', 'lizard', 'scissors']
-const threeChoices = ['rock', 'paper', 'scissors']
-let choices = []
-
-let currentRound = 1
-
-
-const roundNumber = (currentRound) => {
-    if (currentRound <= 2){
-        return choices = threeChoices.map()
-    }
-    else {
-        return choices = fiveChoices.map()
-    }
-    console.log(choices)
+// switch game to five choices after 2 rounds
+function roundNumber(currentRound) {
+  if (currentRound <= 2){
+    choicesFromArray = threeChoices.map((choices) => choices)
+  }
+  else {
+    choicesFromArray = fiveChoices.map((choices) => choices)
+  }
 }
 
-
-function compare(roundNumber) {
-    choice1 = choices.indexOf(choice1);
-    choice2 = choices.indexOf(choice2);
-    if (choice1 == choice2) {
-      return "tie";
-    }
-    if (choice1 == choices.length - 1 && choice2 == 0) {
-      return "lose";
-    }
-    if (choice2 == choices.length - 1 && choice1 == 0) {
-      return "win";
-    }
-    if (choice1 > choice2) {
-      return "win";
-    } else {
-      return 'lose';
-    }
+// decide victor from array choices 
+function compare(playerChoice, computerChoice) {
+  playerChoice = choicesFromArray.indexOf(playerChoice);
+  computerChoice = choicesFromArray.indexOf(computerChoice);
+  if (playerChoice == computerChoice) {
+    result = "tie";
   }
+  else if (playerChoice == choicesFromArray.length - 1 && computerChoice == 0) {
+    result = "lose";
+  }
+  else if (computerChoice == choicesFromArray.length - 1 && playerChoice == 0) {
+    result = "win";
+  }
+  else if (playerChoice > computerChoice) {
+    result = "win";
+  } else {
+    result = 'lose';
+  }
+}
 
-  console.log(compare('rock', 'scissors'))
+// determine which array of choices based on round and determine victor
+const playRound = (playerChoice, computerChoice)=> {
+  roundNumber(currentRound);
+  compare(playerChoice, computerChoice)
+  return result
+  
+}
+
+console.log(playRound('paper', 'scissors'))
+
+
