@@ -6,8 +6,8 @@ let playerScore = 0;
 let computerScore = 0;
 let result;
 
-const fiveChoices = ['rock', 'spock', 'paper', 'lizard', 'scissors'];
-const threeChoices = ['rock', 'paper', 'scissors'];
+const fiveChoices = ['paper', 'rock', 'lizard', 'spock', 'scissors'];
+const threeChoices = ['paper', 'rock', 'scissors'];
 
 const btns = document.querySelectorAll('img');
 const currentPlayerScore = document.getElementById('player-score');
@@ -33,11 +33,11 @@ function refreshPage() {
 }
 
 function scores(result){
-  if (result == 'win'){
+  if (result == '1'){
     playerScore++
     currentPlayerScore.textContent = playerScore;
   }
-  if (result == 'lose'){
+  if (result == '2'){
     computerScore++
     currentComputerScore.textContent = computerScore;
 
@@ -74,24 +74,61 @@ function roundNumber(currentRound) {
 
 
 // decide victor from array choices 
-function compare(playerChoice, computerChoice) {
-  playerChoice = choicesFromArray.indexOf(playerChoice);
-  computerChoice = choicesFromArray.indexOf(computerChoice);
-  if (playerChoice == computerChoice) {
-    result = 'tie';
+// function compare(playerChoice, computerChoice) {
+//   playerChoice = choicesFromArray.indexOf(playerChoice);
+//   computerChoice = choicesFromArray.indexOf(computerChoice);
+//   if (playerChoice == computerChoice) {
+//     result = 'tie';
+//   }
+//   else if (playerChoice == choicesFromArray.length - 1 && computerChoice == 0) {
+//     result = 'lose';
+//   }
+//   else if (computerChoice == choicesFromArray.length - 1 && playerChoice == 0) {
+//     result = 'win';
+//   }
+//   else if (playerChoice > computerChoice) {
+//     result = 'win';
+//   } else {
+//     result = 'lose';
+//   }
+//   console.log(playerChoice, computerChoice, result);
+
+// }
+
+function compare (playerChoice, computerChoice) {
+  if (playerChoice === undefined){
+      return
   }
-  else if (playerChoice == choicesFromArray.length - 1 && computerChoice == 0) {
-    result = 'lose';
+   indexPlayer = choicesFromArray.indexOf(playerChoice), //rock = 1
+   indexComputer = choicesFromArray.indexOf(computerChoice), //paper = 0
+  difference = indexComputer - indexPlayer; // 0 - 1 = -1
+
+  if(difference < 0) { // -1 < 0 = true
+      difference += choicesFromArray.length; // -1 + 5 = 4
   }
-  else if (computerChoice == choicesFromArray.length - 1 && playerChoice == 0) {
-    result = 'win';
+  while(difference > 2) { //4 > 2 = true
+      difference -= 2; // 4 - 2 = 2. you lose.
   }
-  else if (playerChoice > computerChoice) {
-    result = 'win';
-  } else {
-    result = 'lose';
+  return result = difference
+  // compareScore(difference);
+  // textResults.textContent = `You played ${playerChoice} and ${result[difference]} ${computerChoice}`;  
+};
+
+function compareScore(difference){
+
+  if (difference === 1 && playerScore < 3 && computerScore < 3){
+      playerScore++
+      scores();
+  }
+  else if (difference === 2 && playerScore < 3 && computerScore < 3){
+      computerScore++
+      scores();
+  }
+  else if (playerScore < 3 && computerScore < 3){
+      scores();
   }
 }
+
 
 
 const realPlay = (playerChoice) => {
