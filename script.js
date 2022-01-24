@@ -1,13 +1,24 @@
 let playerChoice;
 let computerChoice;
 let choicesFromArray =[];
-let currentRound = 3;
+let currentRound = 0;
+let playerScore = 0;
+let computerScore = 0;
 let result;
 
 const fiveChoices = ['rock', 'spock', 'paper', 'lizard', 'scissors'];
 const threeChoices = ['rock', 'paper', 'scissors'];
 
 const btns = document.querySelectorAll('img');
+const currentPlayerScore = document.getElementById('player-score');
+const currentComputerScore = document.getElementById('computer-score');
+
+const imgChoice = btns.forEach((image)=>{image.addEventListener('click',()=>{
+  playerChoice = image.id
+  realPlay(playerChoice)
+  })
+});
+
 
 const newGame = document.getElementById('refresh')
 newGame.textContent = `Play Some More`;
@@ -21,6 +32,17 @@ function refreshPage() {
   window.location.reload(true);
 }
 
+function scores(result){
+  if (result == 'win'){
+    playerScore++
+    currentPlayerScore.textContent = playerScore;
+  }
+  if (result == 'lose'){
+    computerScore++
+    currentComputerScore.textContent = computerScore;
+
+  }
+}
 
 // get random computer choice
 function getComputerChoice(currentRound){
@@ -56,35 +78,29 @@ function compare(playerChoice, computerChoice) {
   playerChoice = choicesFromArray.indexOf(playerChoice);
   computerChoice = choicesFromArray.indexOf(computerChoice);
   if (playerChoice == computerChoice) {
-    result = "tie";
+    result = 'tie';
   }
   else if (playerChoice == choicesFromArray.length - 1 && computerChoice == 0) {
-    result = "lose";
+    result = 'lose';
   }
   else if (computerChoice == choicesFromArray.length - 1 && playerChoice == 0) {
-    result = "win";
+    result = 'win';
   }
   else if (playerChoice > computerChoice) {
-    result = "win";
+    result = 'win';
   } else {
     result = 'lose';
   }
-  console.log(playerChoice, computerChoice)
 }
 
 
 const realPlay = (playerChoice) => {
   roundNumber(currentRound);
   compare(playerChoice, computerChoice);
-  console.log(playerChoice, computerChoice, result)
+  scores(result);
+  currentRound++;
+  console.log(currentRound, computerScore, playerScore);
+  console.log(playerChoice, computerChoice, result);
   return 
 }
-
-
-
-const imgChoice = btns.forEach((image)=>{image.addEventListener('click',()=>{
-  playerChoice = image.id
-  realPlay(playerChoice)
-  })
-});
 
