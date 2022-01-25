@@ -13,13 +13,28 @@ const btns = document.querySelectorAll('img');
 const currentPlayerScore = document.getElementById('player-score');
 const currentComputerScore = document.getElementById('computer-score');
 
+
+// initialize game on click of img
 const imgChoice = btns.forEach((image)=>{image.addEventListener('click',()=>{
-  playerChoice = image.id
-  realPlay(playerChoice)
+  playerChoice = image.id;
+  realPlay(playerChoice);
   })
 });
 
+function toggle() {
+  let hiddenLizard = document.getElementById('lizard-div').style.display;
+  let hiddenSpock = document.getElementById('spock-div').style.display;
+  // con  = document.getElementsByClassName('the-rules').style.display;
+  if ( hiddenLizard = hiddenSpock == 'block') {
+    hiddenLizard = hiddenSpock  = 'none';
+  } 
+  else {
+    hiddenLizard = hiddenSpock  = 'block';
+  }
+} 
 
+
+// refresh button
 const newGame = document.getElementById('refresh')
 newGame.textContent = `Play Some More`;
 newGame.classList.add('refresh');
@@ -27,17 +42,18 @@ newGame.addEventListener('click',()=> {
     refreshPage();
 });
 
-// Function to refresh page
+
 function refreshPage() {
   window.location.reload(true);
 }
 
+
 function scores(result){
-  if (result == '1'){
+  if (result === '1' && playerScore < 3 && computerScore < 3){
     playerScore++
     currentPlayerScore.textContent = playerScore;
   }
-  if (result == '2'){
+  else if (difference === '2' && playerScore < 3 && computerScore < 3){
     computerScore++
     currentComputerScore.textContent = computerScore;
 
@@ -66,35 +82,15 @@ function roundNumber(currentRound) {
     return computerChoice
   }
   else {
-    getComputerChoice(currentRound)
-    choicesFromArray = fiveChoices.map((choices) => choices)
-    return computerChoice
+    toggle();
+    getComputerChoice(currentRound);
+    choicesFromArray = fiveChoices.map((choices) => choices);
+    return computerChoice;
   }
 }
 
 
-// decide victor from array choices 
-// function compare(playerChoice, computerChoice) {
-//   playerChoice = choicesFromArray.indexOf(playerChoice);
-//   computerChoice = choicesFromArray.indexOf(computerChoice);
-//   if (playerChoice == computerChoice) {
-//     result = 'tie';
-//   }
-//   else if (playerChoice == choicesFromArray.length - 1 && computerChoice == 0) {
-//     result = 'lose';
-//   }
-//   else if (computerChoice == choicesFromArray.length - 1 && playerChoice == 0) {
-//     result = 'win';
-//   }
-//   else if (playerChoice > computerChoice) {
-//     result = 'win';
-//   } else {
-//     result = 'lose';
-//   }
-//   console.log(playerChoice, computerChoice, result);
-
-// }
-
+// determines winner based off index value of array and returns 0, 1, or 2
 function compare (playerChoice, computerChoice) {
   if (playerChoice === undefined){
       return
@@ -110,25 +106,7 @@ function compare (playerChoice, computerChoice) {
       difference -= 2; // 4 - 2 = 2. you lose.
   }
   return result = difference
-  // compareScore(difference);
-  // textResults.textContent = `You played ${playerChoice} and ${result[difference]} ${computerChoice}`;  
 };
-
-function compareScore(difference){
-
-  if (difference === 1 && playerScore < 3 && computerScore < 3){
-      playerScore++
-      scores();
-  }
-  else if (difference === 2 && playerScore < 3 && computerScore < 3){
-      computerScore++
-      scores();
-  }
-  else if (playerScore < 3 && computerScore < 3){
-      scores();
-  }
-}
-
 
 
 const realPlay = (playerChoice) => {
