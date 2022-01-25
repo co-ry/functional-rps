@@ -24,7 +24,6 @@ const imgChoice = btns.forEach((image)=>{image.addEventListener('click',()=>{
 function toggle() {
   let hiddenLizard = document.getElementById('lizard-div').style.display;
   let hiddenSpock = document.getElementById('spock-div').style.display;
-  // con  = document.getElementsByClassName('the-rules').style.display;
   if ( hiddenLizard = hiddenSpock == 'block') {
     hiddenLizard = hiddenSpock  = 'none';
   } 
